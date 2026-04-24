@@ -10,16 +10,13 @@ exports.createTask = async (request, response, next) => {
         message: "Request body is required" 
       });
     }
-    
     const { title, body, status } = request.body;
-    
     if (!title) {
       return response.status(400).json({ 
         message: "Title is required" 
       });
     }
-    
-
+    const userId = request.user.id;
     
     const task = await Task.create({
       title,
